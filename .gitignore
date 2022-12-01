@@ -1,0 +1,6 @@
+/.gradle/
+/build/
+/.idea/
+/out/
+
+/AdventOfCode2022.iml
