@@ -28,7 +28,7 @@ private fun inspecting(rounds: Int, monkeys: MutableList<Monkey>, divide: Boolea
     val commonProduct = monkeys.fold(1L) { value, monkey -> value * monkey.div }
 
     repeat(rounds) {
-        for ((index, monkey) in monkeys.withIndex()) {
+        for (monkey in monkeys) {
             monkey.count += monkey.items.size
             while (monkey.items.isNotEmpty()) {
                 var value = monkey.op(monkey.items.removeFirst())
