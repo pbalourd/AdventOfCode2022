@@ -47,8 +47,7 @@ private fun findEndPointLevel(grid: List<MutableList<Char>>, start: Point, end: 
     var count = 0
     while (currentLevel.isNotEmpty()) {
         val nextLevel = ArrayDeque<Point>()
-        while (currentLevel.isNotEmpty()) {
-            val (y, x) = currentLevel.removeFirst()
+        for ((y, x) in currentLevel) {
             if (visited[y][x]) continue
             else visited[y][x] = true
             if (Point(y, x) == end) return count
