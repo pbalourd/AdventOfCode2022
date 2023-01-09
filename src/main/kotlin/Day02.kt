@@ -1,52 +1,26 @@
 import java.io.File
 
 fun main() {
-    val input = File("src/main/kotlin/input02.txt")
-    val pairs = input.readLines()
+    val pairs = File("src/main/kotlin/input02.txt").readLines()
         .map{ it.split(" ") }
+        .map { it -> listOf(it[0][0].code - 'A'.code, it[1][0].code - 'X'.code) }
 
     var totalScore = 0
     for (pair in pairs) totalScore += getScorePart1(pair[0], pair[1])
-
     println(totalScore)
     // Solution 10994
 
     totalScore = 0
     for (pair in pairs) totalScore += getScorePart2(pair[0], pair[1])
     println(totalScore)
+    //Solution 12526
 }
 
-fun getScorePart1(a: String, b: String): Int {
-    var score = when (b) {
-        "X" -> 1
-        "Y" -> 2
-        else -> 3
-    }
-    if ( (b == "X" && a == "A") ||
-        (b == "Y" && a == "B") ||
-        (b == "Z" && a == "C") ) score += 3
-    else {
-        if ( (b == "X" && a == "C") ||
-            (b == "Y" && a == "A") ||
-            (b == "Z" && a == "B") ) score += 6
-    }
-    return score
+fun getScorePart1(a: Int, b: Int): Int {
+    return (b + 1) + if (a == b) 3 else if ((a + 1) % 3 == b) 6 else 0
 }
 
-fun getScorePart2(a: String, b: String): Int {
-    var score = when (b) {
-        "X" -> 0
-        "Y" -> 3
-        else -> 6
-    }
-    if ( (b == "X" && a == "B") ||
-        (b == "Y" && a == "A") ||
-        (b == "Z" && a == "C") ) score += 1
-    if ( (b == "X" && a == "C") ||
-        (b == "Y" && a == "B") ||
-        (b == "Z" && a == "A") ) score += 2
-    if ( (b == "X" && a == "A") ||
-        (b == "Y" && a == "C") ||
-        (b == "Z" && a == "B") ) score += 3
-    return score
+fun getScorePart2(a: Int, b: Int): Int {
+    return b * 3 + 1 + if (b == 1) a else if (b == 2) (a + 1) % 3 else (a + 2) % 3
 }
+
