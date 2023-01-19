@@ -21,7 +21,7 @@ fun main() {
 
     monkeys = initiate()
     inspecting(10000, monkeys, false)
-    // Solution
+    // Solution 21115867968
 }
 
 private fun inspecting(rounds: Int, monkeys: MutableList<Monkey>, divide: Boolean) {
