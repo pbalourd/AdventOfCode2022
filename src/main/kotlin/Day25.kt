@@ -4,7 +4,7 @@ fun main() {
     val snafuNumbers = File("src/main/kotlin/input25.txt").readLines()
 
     println( longToSnafu( snafuNumbers.sumOf { snafuToLong(it) } ) )
-
+    // Solution 2-0-01==0-1=2212=100
 }
 
 fun snafuToLong(snafu: String): Long {
@@ -17,9 +17,9 @@ fun longToSnafu(num: Long): String {
     var n = num
     return buildString {
         while (n > 0) {
-            append(decimalDigitsList[(n % 5).toInt()])
+            insert(0, decimalDigitsList[(n % 5).toInt()])
             n = (n + 2) / 5
         }
-    }.reversed()
+    }
 }
 
